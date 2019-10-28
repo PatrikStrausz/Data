@@ -1,0 +1,24 @@
+SELECT * FROM [Customers] WHERE country LIKE '_a%';    -- druhe pismeno je A
+SELECT * FROM [Customers] WHERE country LIKE 'S%';     -- slovo zacina na S
+SELECT * FROM [Customers] WHERE country LIKE 'Spain';  -- krajina je spain
+SELECT * FROM [Customers] WHERE country LIKE '%a%';     -- a je vo slove 
+
+SELECT * FROM [Products] WHERE productname LIKE '%e%e%'; -- dve E v nazve
+SELECT * FROM [Products] WHERE productname LIKE '% % %'; -- aspon 3 slovny nazov
+SELECT DISTINCT Country FROM [Customers] ;        -- nebude sa opakovat
+SELECT DISTINCT Country FROM [Customers] ORDER BY country;    -- abecedne zoradene
+SELECT count(*) FROM [Customers]          --pocet riadkov
+SELECT count(*) FROM [Customers] WHERE country LIKE 'Germany';  --pocet ludi z GER
+SELECT count(*) FROM [Customers] WHERE NOT (country LIKE 'Spain'); --pocet krajin okrem Spain
+SELECT count(*) FROM [Products] WHERE price >=10; -- pocet produktov drahsich ako 10
+SELECT sum(Price) as Cena FROM [Products] -- spocita cena vsetkych produktov
+SELECT sum(Price) as Cena FROM [Products] WHERE CategoryID LIKE 4; -cena syrov 
+SELECT * FROM [Employees] ORDER BY BirthDate  DESC; -- od najmladsieho po najstarsieho
+SELECT * FROM [Employees] WHERE BirthDate LIKE '%-08-%'; - narodeny v auguste
+
+SELECT * FROM [Products] WHERE price < 20 AND productName LIKE '%k%'; -- cena menej ako 20, v nazve je K
+SELECT LastName, FirstName FROM [Employees] WHERE Birthdate LIKE '1963%'; --zamestnanec narodeny v 1963
+SELECT * FROM [Products] ORDER BY price ASC, productname ; -- cena vzostupne a podla abecedy
+
+SELECT country, count(*) FROM [Customers] GROUP BY country; --krajiny a pocet clenov v nej
+SELECT categoryid, count(*) FROM [Products] GROUP BY categoryid; --pocet produktov v kategoriach
