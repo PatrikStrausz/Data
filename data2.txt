@@ -1,0 +1,27 @@
+SELECT name,spz FROM Employee
+INNER JOIN Car ON Employee.id = Car.Ide
+INNER JOIN CarDetail ON Car.id = CarDetail.id;  --vypise zakaznika a jeho auto 
+
+SELECT name,spz FROM Employee
+INNER JOIN Car ON Employee.id = Car.Ide
+INNER JOIN CarDetail ON Car.id = CarDetail.id
+WHERE brand LIKE 'BMW' ;                           --vypise vsetkych ktory maju BMW
+
+SELECT name,brand  FROM Employee
+INNER JOIN Car ON Employee.id = Car.Ide
+INNER JOIN CarDetail ON Car.id = CarDetail.id
+WHERE Employ id=8
+ORDER BY Brand;                                 -- vypise Misove auta
+
+SELECT  name, count(*) FROM Employee
+INNER JOIN Car ON Employee.id = Car.Ide
+GROUP BY name;                                  --kto ma kolko aut
+
+SELECT CustomerName,OrderID FROM [Customers]
+INNER JOIN Orders ON Customers.CustomerId=Orders.CustomerId
+GROUP BY CustomerName;                          -- zakaznici a ich objednavky
+
+SELECT CustomerName,count(OrderID) AS counts FROM [Customers]
+INNER JOIN Orders ON Customers.CustomerId=Orders.CustomerId
+GROUP BY CustomerName
+ORDER BY counts DESC;                           --pocet objednavok
