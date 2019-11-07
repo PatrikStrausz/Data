@@ -25,3 +25,55 @@ SELECT CustomerName,count(OrderID) AS counts FROM [Customers]
 INNER JOIN Orders ON Customers.CustomerId=Orders.CustomerId
 GROUP BY CustomerName
 ORDER BY counts DESC;                           --pocet objednavok
+
+
+SELECT OrderDate, OrderID FROM [Customers]
+INNER JOIN Orders ON Customers.CustomerId=Orders.CustomerId  --datum a id objednavok Yoshi Latimer
+WHERE ContactName LIKE 'Yoshi Latimer'
+
+
+SELECT OrderDate, Orders.OrderID,ProductName FROM [Customers]
+INNER JOIN Orders ON Customers.CustomerId=Orders.CustomerId
+INNER JOIN OrderDetails ON Orders.OrderId=OrderDetails.OrderId       --datum a id objednavok Yoshi Latimer
+INNER JOIN Products ON OrderDetails.ProductId=Products.ProductId       + nazov produktu
+WHERE ContactName LIKE 'Yoshi Latimer';
+
+
+ELECT  OrderDate, Orders.OrderID,count(ProductName) FROM [Customers]
+INNER JOIN Orders ON Customers.CustomerId=Orders.CustomerId
+INNER JOIN OrderDetails ON Orders.OrderId=OrderDetails.OrderId  --datum a id objednavok Yoshi 
+INNER JOIN Products ON OrderDetails.ProductId=Products.ProductId + pocet objadnavok v dany datum
+WHERE ContactName LIKE 'Yoshi Latimer'
+GROUP BY Orders.OrderID;
+
+SELECT DISTINCT ContactName FROM [Customers]
+INNER JOIN Orders ON Customers.CustomerId=Orders.CustomerId
+INNER JOIN OrderDetails ON Orders.OrderId=OrderDetails.OrderId       
+INNER JOIN Products ON OrderDetails.ProductId=Products.ProductId -- kazdy kto si objednal cokoladu
+WHERE ProductName LIKE 'Chocolade';
+
+SELECT OrderID, OrderDate FROM [Orders]
+INNER JOIN Employees ON Orders.EmployeeID=Employees.EmployeeID --objednavky ktore urobil Steven 
+WHERE FirstName LIKE 'Steven' AND Lastname LIKE 'Buchanan';
+
+SELECT  count(OrderID) , FirstName, LastName FROM [Orders]
+INNER JOIN Employees ON Orders.EmployeeID=Employees.EmployeeID  -- vypise kolko objednavok mal kazdy zamestnanec
+GROUP BY Employees.EmployeeId;
+
+alebo 
+
+SELECT LastName, FirstName, count(OrderID) FROM [Employees]
+INNER JOIN Orders ON Employees.EmployeeID=Orders.EmployeeID
+GROUP BY Employees.EmployeeID
+
+SELECT ProductName,Price FROM [Products] ORDER BY Price DESC LIMIT 3; -3 najdrahsie produkty
+
+SELECT OrderID From Orders WHERE CustomerID IN 
+(SELECT CustomerID FROM [Customers] WHERE country LIKE 'Germany')
+
+
+SELECT ContactName, ProductName,Price FROM Customers
+INNER JOIN Orders ON Orders.CustomerID=Customers.CustomerID
+INNER JOIN OrderDetails ON Orders.OrderId=OrderDetails.OrderID       --ludia ktori si objednali 3 najdrahsie produkty
+INNER JOIN Products ON Products.ProductID=OrderDetails.ProductID
+WHERE Products.ProductID IN (SELECT ProductID FROM Products ORDER BY Price DESC LIMIT 3);
