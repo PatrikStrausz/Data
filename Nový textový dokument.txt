@@ -1,0 +1,3 @@
+select city.Name, city.info  From city 
+INNER JOIN country ON city.id=country.capital -- hlavne mesto thajska + pocet obyvatelov
+WHERE country.name LIKE 'Thailand';

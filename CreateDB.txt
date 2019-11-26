@@ -1,0 +1,8 @@
+Create database nazov;  -- vytvori databazu
+Drop database nazov;    --vymaze databazu
+USE nazov;              --pouzije ju
+
+CREATE TABLE tableName ( id INT (n) PRIMARY KEY AUTO_INCREMENT, --vytvori tabulku v databaze
+name VARCHAR(30) NOT NULL,
+rc CHAR(11) UNIQUE,
+Salary FLOAT DEFAULT 0);

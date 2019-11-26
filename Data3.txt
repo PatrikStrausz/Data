@@ -1,0 +1,8 @@
+DELETE  FROM Orders
+WHERE OrderID IN (SELECT OrderId from Orders INNER JOIN Customers ON Orders.customerid=customers.customerid WHERE country LIKE 'Italy');
+
+-- vymaze vsetky objednavky od talianskych zakaznikov
+
+SELECT CategoryName, count(ProductName) FROM [Products]
+INNER JOIN Categories ON Products.CategoryID= Categories.CategoryID  -- kolko produktov je v kazdej kategorii
+GROUP BY Categories.CategoryID                   

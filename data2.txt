@@ -77,3 +77,12 @@ INNER JOIN Orders ON Orders.CustomerID=Customers.CustomerID
 INNER JOIN OrderDetails ON Orders.OrderId=OrderDetails.OrderID       --ludia ktori si objednali 3 najdrahsie produkty
 INNER JOIN Products ON Products.ProductID=OrderDetails.ProductID
 WHERE Products.ProductID IN (SELECT ProductID FROM Products ORDER BY Price DESC LIMIT 3);
+
+
+SELECT ContactName FROM Customers
+LEFT JOIN Orders ON Orders.CustomerID=Customers.CustomerID  --zakaznici ktori si nic neobjednali
+WHERE Orders.CustomerID IS NULL;
+
+SELECT ProductName FROM Products
+LEFT JOIN OrderDetails ON Products.ProductID=OrderDetails.ProductId -- produkty ktore si nikto neobjednal
+WHERE OrderDetails.ProductID IS NULL;
