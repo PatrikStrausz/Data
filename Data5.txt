@@ -1,0 +1,13 @@
+select city.Name, city.info  From city 
+INNER JOIN country ON city.id=country.capital -- hlavne mesto thajska + pocet obyvatelov
+WHERE country.name LIKE 'Thailand';
+
+
+select city.name, json_extract(info,'$.Population')as pop FROM city  --vypise 10 najvacsich miest
+JOIN country on city.countrycode= country.code order by pop desc limit 10; -- vytiahne info z json
+
+select country.name, count(city.name) FROM country 
+INNER JOIN city ON country.code = city.countryCode GROUP BY country.name;   --krajiny a ich pocet miest    
+
+ select name, json_extract(info,'$.Population') as pop from city 
+where countrycode like "SVK" or  countrycode like "CZE" order by pop  desc ; -- populacia cz a svk miest

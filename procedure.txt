@@ -1,0 +1,15 @@
+delimiter //
+create procedure showCities()
+BEGIN
+SELECT * from city;
+end
+//
+
+call showCities();
+
+delimiter // 
+create procedure getCity(let1 varchar(25))
+begin select * from city where city.name like concat(let1, '%');
+end // 
+
+call getCity('Ka');

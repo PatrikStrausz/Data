@@ -1,0 +1,21 @@
+create trigger name 
+(before, after) (insert, delete, update) ON table name
+for each row 
+begin
+
+end
+
+
+create trigger deleteCurrentUser
+before delete on user 
+for each row
+begin 
+insert into archive_User(id, name, date)
+VALUES (old.id, old.name,  CURRENT_TIMESTAMP);
+END
+
+begin 
+ IF(new.Name = "")
+ THEN SET new.name= "No name";
+ END IF;
+END
